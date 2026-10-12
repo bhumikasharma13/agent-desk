@@ -1,0 +1,4 @@
+# Each examples/*/run.sh sources scripts/example-setup.sh by a computed path, which
+# shellcheck cannot follow (SC1091); the setup is linted on its own as scripts/*.sh.
+# The setup runs `set -eu`, so a failed `cd` in an example already stops it (SC2164).
+disable=SC1091,SC2164

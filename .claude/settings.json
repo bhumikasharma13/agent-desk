@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install --frozen-lockfile)",
+      "Bash(pnpm type-check)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm test)",
+      "Bash(pnpm audit --prod)",
+      "Bash(pnpm audit --audit-level=high)",
+      "Bash(pnpm build)",
+      "Bash(pnpm test:acceptance)",
+      "Bash(shellcheck scripts/*.sh examples/*/run.sh .github/assets/screenshots.sh)",
+      "Bash(pnpm make)",
+      "Bash(node scripts/third-party-licenses.mjs write)"
+    ]
+  }
+}

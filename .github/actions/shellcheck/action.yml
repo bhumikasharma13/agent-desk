@@ -1,0 +1,21 @@
+name: Install shellcheck
+description: Installs shellcheck 0.11.0 from its release, checked against a pinned sha256, on macOS.
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        version=0.11.0
+        case "$(uname -m)" in
+          arm64) arch=aarch64 sha256=339b930feb1ea764467013cc1f72d09cd6b869ebf1013296ba9055ab2ffbd26f ;;
+          x86_64) arch=x86_64 sha256=c2c15e08df0e8fbc374c335b230a7ee958c313fa5714817a59aa59f1aa594f51 ;;
+          *) echo "::error::no pinned shellcheck for $(uname -m)"; exit 1 ;;
+        esac
+        dir="$RUNNER_TEMP/shellcheck"
+        mkdir -p "$dir"
+        curl -fsSL -o "$dir/shellcheck.tar.gz" \
+          "https://github.com/koalaman/shellcheck/releases/download/v$version/shellcheck-v$version.darwin.$arch.tar.gz"
+        echo "$sha256  $dir/shellcheck.tar.gz" | shasum -a 256 -c -
+        tar -xzf "$dir/shellcheck.tar.gz" -C "$dir"
+        echo "$dir/shellcheck-v$version" >> "$GITHUB_PATH"
+        "$dir/shellcheck-v$version/shellcheck" --version

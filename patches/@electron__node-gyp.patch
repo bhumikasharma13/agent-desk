@@ -1,0 +1,12 @@
+diff --git a/lib/log.js b/lib/log.js
+--- a/lib/log.js
++++ b/lib/log.js
+@@ -97,7 +97,7 @@
+   }
+
+   isVisible (level) {
+-    return (this.level && this.level.index <= (this.#levels.get(level) && this.#levels.get(level).index) || -1)
++    return this.level?.index <= this.#levels.get(level)?.index ?? -1
+   }
+
+   _onLog (...args) {

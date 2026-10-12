@@ -1,0 +1,2 @@
+{"type":"say","uuid":"msg-001"  <- this line is intentionally malformed JSON
+{"type":"say","uuid":"msg-002","timestamp":"2026-04-01T10:00:00.000Z","sessionId":"bad-session","message":{"role":"user","content":[{"type":"text","text":"valid line"}]}}

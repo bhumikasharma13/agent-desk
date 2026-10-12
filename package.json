@@ -1,0 +1,92 @@
+{
+  "name": "agent-desk",
+  "productName": "Agent Desk",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A local macOS tray app that shows your AI coding sessions per tool and project, and the skills, rules, agents and hooks your coding agents load.",
+  "license": "MIT",
+  "author": "tetriz-ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tetriz-ai/agent-desk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tetriz-ai/agent-desk/issues"
+  },
+  "homepage": "https://github.com/tetriz-ai/agent-desk#readme",
+  "main": ".vite/build/index.js",
+  "engines": {
+    "node": ">=24"
+  },
+  "os": [
+    "darwin"
+  ],
+  "packageManager": "pnpm@10.34.5",
+  "scripts": {
+    "prepare": "pnpm --filter local-session-extractor --filter harness-discovery run prepack",
+    "start": "electron-forge start",
+    "build": "electron-forge package",
+    "make": "electron-forge make",
+    "lint": "eslint src",
+    "type-check": "tsc --noEmit -p tsconfig.main.json && tsc --noEmit -p tsconfig.preload.json && tsc --noEmit -p tsconfig.renderer.json && tsc --noEmit -p tsconfig.worker.json && tsc --noEmit -p tsconfig.scripts.json",
+    "test": "NODE_ENV=test NODE_NO_WARNINGS=1 ELECTRON_RUN_AS_NODE=1 electron --experimental-transform-types --experimental-test-module-mocks --test-timeout=60000 --loader ./src/main/test-loader.mjs --test src/main/__tests__/*.test.ts src/main/*/__tests__/*.test.ts src/main/*/*/__tests__/*.test.ts src/renderer/__tests__/*.test.ts scripts/verifyIcon.test.cjs scripts/adHocSign.test.cjs scripts/forgeHooks.test.ts scripts/third-party-licenses.test.mjs scripts/readme-examples.test.mjs scripts/vite-plugin-logger-caller.test.ts",
+    "test:acceptance": "node --test --test-timeout=300000 test/acceptance/acceptance.test.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "5.2.8",
+    "@fontsource/geist-mono": "5.2.7",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "harness-discovery": "workspace:*",
+    "local-session-extractor": "workspace:*",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "tailwind-merge": "3.4.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "7.11.1",
+    "@electron-forge/maker-dmg": "7.11.1",
+    "@electron-forge/maker-zip": "7.11.1",
+    "@electron-forge/plugin-fuses": "7.11.1",
+    "@electron-forge/plugin-vite": "7.11.1",
+    "@electron-forge/shared-types": "7.11.1",
+    "@electron/fuses": "1.8.0",
+    "@tailwindcss/vite": "4.1.18",
+    "@types/node": "25.2.3",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.4",
+    "electron": "41.10.7",
+    "eslint": "10.11.0",
+    "magic-string": "0.30.21",
+    "playwright-core": "1.63.0",
+    "tailwindcss": "4.1.18",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.0",
+    "vite": "7.3.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "esbuild",
+      "fs-xattr",
+      "macos-alias"
+    ],
+    "overrides": {
+      "tar@<7.5.21": "7.5.22",
+      "tmp@<0.2.6": "0.2.7",
+      "extract-zip>yauzl": "3.4.0"
+    },
+    "patchedDependencies": {
+      "@electron/node-gyp@10.2.0-electron.1": "patches/@electron__node-gyp.patch"
+    },
+    "auditConfig": {
+      "ignoreGhsas": [
+        "GHSA-jmr9-qjv8-65gv",
+        "GHSA-7pqw-9j4j-h8q3",
+        "GHSA-vfj7-8cjw-p6xm",
+        "GHSA-w3rx-r6r6-pgpr"
+      ]
+    }
+  }
+}

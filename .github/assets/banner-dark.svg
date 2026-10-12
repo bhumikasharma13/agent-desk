@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="200" viewBox="0 0 880 200">
+  <rect width="880" height="200" rx="16" fill="#0D1117"/>
+  <g transform="translate(40 40)">
+    <rect width="120" height="120" rx="28" fill="#273449"/>
+    <circle cx="38" cy="36" r="7" fill="#5EEAD4"/>
+    <rect x="50" y="32" width="42" height="8" rx="4" fill="#E5E7EB"/>
+    <circle cx="38" cy="60" r="7" fill="#FBBF24"/>
+    <rect x="50" y="56" width="30" height="8" rx="4" fill="#E5E7EB"/>
+    <circle cx="38" cy="84" r="7" fill="#A78BFA"/>
+    <rect x="50" y="80" width="36" height="8" rx="4" fill="#E5E7EB"/>
+  </g>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <text x="192" y="80" font-size="44" font-weight="700" fill="#F3F4F6">Agent Desk</text>
+    <text x="192" y="114" font-size="18" fill="#C9D1D9">Browse AI coding sessions by tool and project.</text>
+    <text x="192" y="138" font-size="18" fill="#C9D1D9">Read conversations. Inspect skills, rules and hooks.</text>
+    <text x="192" y="162" font-size="18" fill="#C9D1D9">Local to your Mac. No account or server.</text>
+  </g>
+</svg>

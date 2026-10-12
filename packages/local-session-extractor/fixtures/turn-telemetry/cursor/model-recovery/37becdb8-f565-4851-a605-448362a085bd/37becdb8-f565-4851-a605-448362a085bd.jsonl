@@ -1,0 +1,17 @@
+{"role": "user", "message": {"content": [{"type": "text", "text": "<timestamp>Tuesday, Aug 25, 2026, 12:46 PM (UTC)</timestamp>\n<user_query>\n\n[scrubbed user prompt]\n</user_query>"}]}}
+{"role": "assistant", "message": {"content": [{"type": "text", "text": "[scrubbed assistant text]"}, {"type": "tool_use", "name": "Read", "input": {"path": "/Users/user/src/example-repo/path/scrubbed-17.md"}}, {"type": "tool_use", "name": "Shell", "input": {"command": "echo scrubbed", "description": "[scrubbed]"}}]}}
+{"role": "assistant", "message": {"content": [{"type": "text", "text": "[scrubbed assistant text]"}, {"type": "tool_use", "name": "Read", "input": {"path": "/Users/user/src/example-repo/path/scrubbed-18.md"}}, {"type": "tool_use", "name": "Shell", "input": {"command": "echo scrubbed", "description": "[scrubbed]"}}, {"type": "tool_use", "name": "WebSearch", "input": {"search_term": "[scrubbed]", "explanation": "[scrubbed]"}}]}}
+{"role": "assistant", "message": {"content": [{"type": "text", "text": "[scrubbed assistant text]"}, {"type": "tool_use", "name": "Shell", "input": {"command": "echo scrubbed", "description": "[scrubbed]", "block_until_ms": 120000}}]}}
+{"role": "assistant", "message": {"content": [{"type": "text", "text": "[scrubbed assistant text]"}, {"type": "tool_use", "name": "Shell", "input": {"command": "echo scrubbed", "description": "[scrubbed]"}}, {"type": "tool_use", "name": "Read", "input": {"path": "/Users/user/src/example-repo/path/scrubbed-19.txt", "limit": 30}}]}}
+{"role": "assistant", "message": {"content": [{"type": "text", "text": "[scrubbed assistant text]"}]}}
+{"role": "user", "message": {"content": [{"type": "text", "text": "<timestamp>Tuesday, Aug 25, 2026, 12:50 PM (UTC)</timestamp>\n<user_query>\n\n[scrubbed user prompt]\n</user_query>"}]}}
+{"role": "assistant", "message": {"content": [{"type": "text", "text": "[scrubbed assistant text]"}]}}
+{"role": "user", "message": {"content": [{"type": "text", "text": "<timestamp>Tuesday, Aug 25, 2026, 12:51 PM (UTC)</timestamp>\n<user_query>\n\n[scrubbed user prompt]\n</user_query>"}]}}
+{"role": "assistant", "message": {"content": [{"type": "text", "text": "[scrubbed assistant text]"}, {"type": "tool_use", "name": "WebFetch", "input": {"url": "https://example.com/scrubbed"}}, {"type": "tool_use", "name": "Shell", "input": {"command": "echo scrubbed", "description": "[scrubbed]"}}]}}
+{"role": "assistant", "message": {"content": [{"type": "text", "text": "[scrubbed assistant text]"}, {"type": "tool_use", "name": "Read", "input": {"limit": 80, "path": "/Users/user/src/example-repo/path/scrubbed-20.txt"}}, {"type": "tool_use", "name": "WebSearch", "input": {"search_term": "[scrubbed]", "explanation": "[scrubbed]"}}]}}
+{"role": "assistant", "message": {"content": [{"type": "text", "text": "[scrubbed assistant text]"}]}}
+{"role": "user", "message": {"content": [{"type": "text", "text": "<timestamp>Tuesday, Aug 25, 2026, 12:52 PM (UTC)</timestamp>\n<user_query>\n\n[scrubbed user prompt]\n</user_query>"}]}}
+{"role": "assistant", "message": {"content": [{"type": "text", "text": "[scrubbed assistant text]"}]}}
+{"role": "user", "message": {"content": [{"type": "text", "text": "<timestamp>Tuesday, Aug 25, 2026, 1:06 PM (UTC)</timestamp>\n<user_query>\n\n[scrubbed user prompt]\n</user_query>"}]}}
+{"role": "assistant", "message": {"content": [{"type": "text", "text": "[scrubbed assistant text]"}]}}
+{"type": "turn_ended", "status": "success"}

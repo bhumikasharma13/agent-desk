@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0.0",
+  "dataModelVersion": 1,
+  "id": "sess_2cb0a8d8-31aa-0e6a-761c-809a6c40d40d",
+  "title": "SCRUBBED session title",
+  "agentMode": "vibe",
+  "workspacePaths": [
+    "/Users/scrubbed-user/workspace"
+  ],
+  "createdAt": "2026-08-12T02:30:30.461Z",
+  "lastModifiedAt": "2026-08-26T05:33:52.433Z",
+  "modelId": "claude-haiku-4.5",
+  "autopilot": true,
+  "semanticReviewEnabled": true,
+  "ftaEnabled": false,
+  "workflowsEnabled": false,
+  "specPlanEnabled": false,
+  "specWorkflow": "quick",
+  "specSkipClarificationEnabled": true,
+  "status": "in_progress",
+  "_meta": {
+    "kiro": {
+      "policyPreset": [
+        "edit-workspace"
+      ],
+      "shellType": "zsh"
+    }
+  }
+}

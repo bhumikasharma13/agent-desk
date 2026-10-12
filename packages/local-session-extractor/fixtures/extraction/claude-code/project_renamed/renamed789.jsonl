@@ -1,0 +1,4 @@
+{"type":"user","uuid":"rmsg-001","timestamp":"2026-04-02T10:00:00.000Z","sessionId":"renamed789","cwd":"/home/user/project","message":{"role":"user","content":[{"type":"text","text":"Investigate the rate limiter"}]},"isSidechain":false}
+{"type":"assistant","uuid":"rmsg-002","timestamp":"2026-04-02T10:00:05.000Z","sessionId":"renamed789","message":{"id":"msg_r001","role":"assistant","content":[{"type":"text","text":"Looking into it."}],"model":"claude-sonnet-4-6","usage":{"input_tokens":20,"output_tokens":40}},"isSidechain":false}
+{"type":"ai-title","aiTitle":"Investigate rate limiter behavior","uuid":"rait-001","sessionId":"renamed789"}
+{"type":"custom-title","customTitle":"rename-test-title","sessionId":"renamed789"}

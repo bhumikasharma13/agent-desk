@@ -1,0 +1,15 @@
+{"type":"user","uuid":"msg-001","timestamp":"2026-04-01T10:00:00.000Z","entrypoint":"cli","permissionMode":"default","sessionId":"abc123def456","cwd":"/home/user/project","message":{"role":"user","content":[{"type":"text","text":"Write a function to sort an array"}]},"isSidechain":false}
+{"type":"assistant","uuid":"msg-002","timestamp":"2026-04-01T10:00:05.000Z","sessionId":"abc123def456","message":{"id":"msg_resp001","role":"assistant","content":[{"type":"text","text":"Here is a sort function:"}],"model":"claude-sonnet-4-6","usage":{"input_tokens":20,"output_tokens":50}},"isSidechain":false}
+{"type":"permission-mode","permissionMode":"bypassPermissions","sessionId":"abc123def456"}
+{"type":"user","uuid":"msg-003","timestamp":"2026-04-01T10:01:00.000Z","sessionId":"abc123def456","cwd":"/home/user/project","gitBranch":"feat/auth","message":{"role":"user","content":[{"type":"image","source":{"type":"base64","media_type":"image/png","data":"iVBOR"}},{"type":"text","text":"Fix the auth bug"}]},"isSidechain":false}
+{"type":"assistant","uuid":"msg-004","timestamp":"2026-04-01T10:01:10.000Z","sessionId":"abc123def456","message":{"id":"msg_resp002","role":"assistant","content":[{"type":"tool_use","id":"tu-001","name":"Edit","input":{"file_path":"/home/user/project/src/auth.ts"}},{"type":"text","text":"I will fix the auth bug"}],"model":"claude-sonnet-4-6","usage":{"input_tokens":30,"output_tokens":60,"cache_creation_input_tokens":5,"cache_read_input_tokens":3,"cache_creation":{"ephemeral_5m_input_tokens":2,"ephemeral_1h_input_tokens":3}}},"isSidechain":false}
+{"type":"assistant","uuid":"msg-005","timestamp":"2026-04-01T10:01:20.000Z","sessionId":"abc123def456","message":{"id":"msg_resp003","role":"assistant","content":[{"type":"text","text":"A measured-zero 5m cache split"}],"model":"claude-sonnet-4-6","usage":{"input_tokens":40,"output_tokens":70,"cache_creation_input_tokens":4,"cache_read_input_tokens":6,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":4}}},"isSidechain":false}
+{"type":"system","subtype":"compact_boundary","trigger":"manual","preTokens":15000,"uuid":"sys-001","sessionId":"abc123def456"}
+{"type":"pr-link","prUrl":"https://github.com/org/repo/pull/42","prNumber":42,"prRepository":"org/repo","uuid":"prl-001","sessionId":"abc123def456"}
+{"type":"pr-link","prUrl":"https://github.com/org/repo/pull/43","prNumber":43,"prRepository":"org/repo","uuid":"prl-002","sessionId":"abc123def456"}
+{"type":"ai-title","aiTitle":"Fix auth bug","uuid":"ait-001","sessionId":"abc123def456"}
+{"type":"file-history-snapshot","trackedFileBackups":[{"filePath":"src/auth.ts"}],"uuid":"fhs-001","sessionId":"abc123def456"}
+{"type":"last-prompt","text":"Fix the auth bug","uuid":"lp-001","sessionId":"abc123def456"}
+{"type":"system","subtype":"bridge_status","url":"https://bridge.example.com/s/abc123","uuid":"bs-001","sessionId":"abc123def456"}
+{"type":"permission-mode","permissionMode":"default","sessionId":"abc123def456"}
+{"type":"permission-mode","permissionMode":"plan","sessionId":"abc123def456"}

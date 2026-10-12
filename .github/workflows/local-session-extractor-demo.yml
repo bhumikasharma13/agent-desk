@@ -1,0 +1,48 @@
+name: local-session-extractor demo GIF
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - packages/local-session-extractor/assets/demo.tape
+      - packages/local-session-extractor/assets/demo-setup.sh
+      - packages/local-session-extractor/examples/scan-from-the-command-line/testdata/**
+      - packages/local-session-extractor/src/**
+      - packages/local-session-extractor/package.json
+permissions:
+  contents: read
+# A newer render replaces an older one, which only uploads an artifact.
+concurrency:
+  group: local-session-extractor-demo-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  render:
+    name: Render the package's demo GIF
+    # The package reads macOS locations only, but the demo's HOME is a copy of the package's
+    # demo home with the same layout, so the recording prints the same output on Linux.
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24"
+          cache: pnpm
+      # No install scripts: the app's Electron download and macOS-only builds are not needed here.
+      # The tape's hidden setup builds the package itself.
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      # With no path the action only installs vhs; the tape runs from the package folder.
+      - uses: charmbracelet/vhs-action@f6d7db07a432fcd3b06772628d36a57f96d95dcf # v2.1.1
+        with:
+          version: v0.10.0
+      - run: vhs assets/demo.tape
+        working-directory: packages/local-session-extractor
+      # The workflow only uploads the GIF. A re-rendered GIF is committed by hand to
+      # packages/local-session-extractor/assets/demo.gif, as CONTRIBUTING.md describes.
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: demo-gif
+          path: packages/local-session-extractor/assets/demo.gif

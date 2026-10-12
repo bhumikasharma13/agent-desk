@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="200" viewBox="0 0 880 200" role="img" aria-label="local-session-extractor: read Claude Code, Copilot, Codex, Cursor, Kiro and Antigravity sessions on macOS into one redacted SQLite store">
+  <rect width="880" height="200" fill="#0d1117"/>
+  <style>
+    .name { font: 700 32px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #e6edf3; }
+    .pitch { font: 400 16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #9da7b3; }
+    .raw { fill: #3a434f; }
+    .card { fill: #161d27; stroke: #33415a; }
+    .cardtxt { font: 600 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #cdd9ec; }
+    .mask { fill: #cdd9ec; }
+    .arrow { font: 400 20px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #7d8794; }
+  </style>
+  <text class="name" x="56" y="86">local-session-extractor</text>
+  <text class="pitch" x="56" y="118">Read Claude Code, Copilot, Codex, Cursor, Kiro and Antigravity</text>
+  <text class="pitch" x="56" y="140">sessions on macOS into one redacted SQLite store.</text>
+  <!-- mark: three tools' session files -> one stored row with a masked value -->
+  <g transform="translate(560,56)">
+    <rect class="raw" x="0" y="0" width="58" height="8" rx="4"/>
+    <rect class="raw" x="0" y="14" width="40" height="8" rx="4"/>
+    <rect class="raw" x="0" y="34" width="64" height="8" rx="4"/>
+    <rect class="raw" x="0" y="48" width="46" height="8" rx="4"/>
+    <rect class="raw" x="0" y="68" width="52" height="8" rx="4"/>
+    <rect class="raw" x="0" y="82" width="36" height="8" rx="4"/>
+    <text x="80" y="52" class="arrow">&#8594;</text>
+    <g transform="translate(112,10)">
+      <rect class="card" x="0" y="0" width="160" height="72" rx="8"/>
+      <text class="cardtxt" x="12" y="20">codex · 0d6c2f4e</text>
+      <text class="cardtxt" x="12" y="40">user: tell</text>
+      <rect class="mask" x="84" y="31" width="60" height="11" rx="2"/>
+      <text class="cardtxt" x="12" y="60">sync: pending</text>
+    </g>
+  </g>
+</svg>

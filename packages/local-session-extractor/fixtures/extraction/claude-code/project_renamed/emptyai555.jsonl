@@ -1,0 +1,3 @@
+{"type":"user","uuid":"eai-001","timestamp":"2026-04-08T10:00:00.000Z","sessionId":"emptyai555","cwd":"/home/user/project","message":{"role":"user","content":[{"type":"text","text":"look at the config"}]},"isSidechain":false}
+{"type":"assistant","uuid":"eai-002","timestamp":"2026-04-08T10:00:05.000Z","sessionId":"emptyai555","message":{"id":"msg_eai001","role":"assistant","content":[{"type":"text","text":"On it."}],"model":"claude-sonnet-4-6","usage":{"input_tokens":15,"output_tokens":25}},"isSidechain":false}
+{"type":"ai-title","aiTitle":"","uuid":"eai-ait","sessionId":"emptyai555"}

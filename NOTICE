@@ -1,0 +1,58 @@
+agent-desk
+Copyright 2026 Workloom Solutions Private Limited
+
+This repository includes the following third-party material:
+
+- CODE_OF_CONDUCT.md is adapted from the Contributor Covenant, version 2.1,
+  https://www.contributor-covenant.org/version/2/1/code_of_conduct/,
+  licensed under CC BY 4.0, https://creativecommons.org/licenses/by/4.0/.
+- The secret-detection patterns in
+  packages/local-session-extractor/src/redaction/secrets.ts, and the username
+  hashing and home-path replacement in
+  packages/local-session-extractor/src/redaction/anonymizer.ts, are adapted
+  from Dataclaw, https://github.com/peteromallet/dataclaw, Copyright (c) 2025
+  Banodoco, licensed under the MIT License. The text is in
+  packages/local-session-extractor/third_party/dataclaw/LICENSE, which the
+  package's .tgz carries, and in third_party/dataclaw/LICENSE, which
+  every build carries in the app's Resources.
+- src/renderer/components/Button.tsx follows the Button component and the cn
+  helper of shadcn/ui, https://github.com/shadcn-ui/ui, Copyright (c) 2023
+  shadcn, licensed under the MIT License. The text is in
+  third_party/shadcn-ui/LICENSE.
+- The inline SVG icons in src/renderer/components/HarnessPage.tsx,
+  Dropdown.tsx, ReadProgress.tsx and PermissionPrimer.tsx are Lucide and
+  Feather icons. Lucide, https://github.com/lucide-icons/lucide, is Copyright
+  (c) Lucide Icons and Contributors, licensed under the ISC License; Feather,
+  https://github.com/feathericons/feather, is Copyright (c) 2013-present Cole
+  Bemis, licensed under the MIT License. Both texts are in
+  third_party/lucide/LICENSE, which every build carries in the app's Resources.
+- forge.config.ts and the window setup in src/main/index.ts follow the
+  vite-typescript template of Electron Forge, https://github.com/electron/forge,
+  Copyright (c) 2016 Samuel Attard, licensed under the MIT License. The text is
+  in third_party/electron-forge/LICENSE.
+- The descriptor packages/local-session-extractor/contract/session-intelligence/
+  conversation.binpb includes buf/validate/validate.proto from protovalidate,
+  https://github.com/bufbuild/protovalidate, Copyright Buf Technologies, Inc.,
+  licensed under the Apache License 2.0. The text is in
+  packages/local-session-extractor/contract/session-intelligence/
+  LICENSE-protovalidate. It is a test input and is not in the package's .tgz
+  or the app.
+
+The release builds bundle the following. Each licence text, with the
+package's own NOTICE where it has one, is in third_party/licenses/<package>/,
+and every build carries that folder in the app's Resources:
+
+- Geist and Geist Mono fonts (@fontsource-variable/geist 5.2.8,
+  @fontsource/geist-mono 5.2.7), https://github.com/vercel/geist-font,
+  licensed under the SIL Open Font License 1.1.
+- React, React DOM and scheduler 19.2.4 / 0.27.0, MIT,
+  https://github.com/facebook/react.
+- class-variance-authority 0.7.1, Apache-2.0, https://github.com/joe-bell/cva;
+  clsx 2.1.1, MIT, https://github.com/lukeed/clsx; tailwind-merge 3.4.0, MIT,
+  https://github.com/dcastil/tailwind-merge.
+- Tailwind CSS 4.1.18 (its generated stylesheet), MIT,
+  https://github.com/tailwindlabs/tailwindcss; Vite 7.3.5 (its module-preload
+  helper), MIT, https://github.com/vitejs/vite.
+- Electron 41.10.7, MIT, https://github.com/electron/electron, with Chromium
+  and the other components listed in LICENSES.chromium.html, which every build
+  carries beside this file.

@@ -1,0 +1,4 @@
+packages:
+  - "packages/*"
+# Electron Forge needs a flat node_modules.
+nodeLinker: hoisted

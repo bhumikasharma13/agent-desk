@@ -1,0 +1,10 @@
+local-session-extractor
+Copyright 2026 The Agent Desk Authors
+
+This package includes the following third-party material:
+
+- The secret-detection patterns in src/redaction/secrets.ts, and the username
+  hashing and home-path replacement in src/redaction/anonymizer.ts, are adapted
+  from Dataclaw, https://github.com/peteromallet/dataclaw, Copyright (c) 2025
+  Banodoco, licensed under the MIT License. The license text is in
+  third_party/dataclaw/LICENSE.

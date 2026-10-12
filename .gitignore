@@ -1,0 +1,8 @@
+node_modules/
+out/
+.vite/
+*.log
+.DS_Store
+.idea/
+.vscode/
+*.swp

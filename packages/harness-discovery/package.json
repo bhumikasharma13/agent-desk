@@ -1,0 +1,70 @@
+{
+  "name": "harness-discovery",
+  "version": "0.1.0",
+  "description": "Lists the skills, rules, agents, hooks and instruction files that Claude Code, Codex, Cursor and Kiro load, with scope and hash.",
+  "keywords": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "kiro",
+    "ai-agents",
+    "skills",
+    "inventory"
+  ],
+  "license": "MIT",
+  "author": "tetriz-ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tetriz-ai/agent-desk.git",
+    "directory": "packages/harness-discovery"
+  },
+  "bugs": {
+    "url": "https://github.com/tetriz-ai/agent-desk/issues"
+  },
+  "homepage": "https://github.com/tetriz-ai/agent-desk/tree/main/packages/harness-discovery#readme",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=24"
+  },
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "bin": {
+    "harness-discovery": "./dist/cli.mjs"
+  },
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "NOTICE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "prepack": "tsup && cp ../../LICENSE .",
+    "test": "vitest run",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "^25.0.0",
+    "eslint": "10.11.0",
+    "tsup": "^8.4.0",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "8.71.0",
+    "vitest": "^4.1.0"
+  }
+}

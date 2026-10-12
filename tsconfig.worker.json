@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "src/main/extraction",
+    "src/main/logging",
+    "src/main/harness",
+    "src/shared"
+  ]
+}

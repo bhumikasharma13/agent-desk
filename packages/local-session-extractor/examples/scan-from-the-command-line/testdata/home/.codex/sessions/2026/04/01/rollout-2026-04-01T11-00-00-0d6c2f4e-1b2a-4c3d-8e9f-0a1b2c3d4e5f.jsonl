@@ -1,0 +1,5 @@
+{"timestamp":"2026-04-01T11:00:00.000Z","type":"session_meta","payload":{"id":"0d6c2f4e-1b2a-4c3d-8e9f-0a1b2c3d4e5f","timestamp":"2026-04-01T11:00:00.000Z","cwd":"/Users/you/src/shop","originator":"codex_cli_rs","cli_version":"0.144.5","source":"cli","model_provider":"openai"}}
+{"timestamp":"2026-04-01T11:00:01.000Z","type":"turn_context","payload":{"cwd":"/Users/you/src/shop","model":"gpt-5-codex"}}
+{"timestamp":"2026-04-01T11:00:01.000Z","type":"response_item","payload":{"type":"message","role":"user","content":[{"type":"input_text","text":"Add a test for the cart total rounding."}]}}
+{"timestamp":"2026-04-01T11:00:01.000Z","type":"event_msg","payload":{"type":"user_message","message":"Add a test for the cart total rounding.","images":[]}}
+{"timestamp":"2026-04-01T11:00:20.000Z","type":"response_item","payload":{"type":"message","role":"assistant","content":[{"type":"output_text","text":"Added cart.test.ts with three rounding cases."}]}}

@@ -1,0 +1,4 @@
+{"type":"user","uuid":"bmsg-001","timestamp":"2026-04-03T10:00:00.000Z","sessionId":"blanked456","cwd":"/home/user/project","message":{"role":"user","content":[{"type":"text","text":"Look at the flaky test"}]},"isSidechain":false}
+{"type":"assistant","uuid":"bmsg-002","timestamp":"2026-04-03T10:00:05.000Z","sessionId":"blanked456","message":{"id":"msg_b001","role":"assistant","content":[{"type":"text","text":"On it."}],"model":"claude-sonnet-4-6","usage":{"input_tokens":15,"output_tokens":30}},"isSidechain":false}
+{"type":"ai-title","aiTitle":"Investigate the flaky test","uuid":"bait-001","sessionId":"blanked456"}
+{"type":"custom-title","customTitle":"","sessionId":"blanked456"}

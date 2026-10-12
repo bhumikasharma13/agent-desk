@@ -1,0 +1,23 @@
+{
+  "source": "Scrubbed live ~/.cursor/chats store.db protobuf roots: original field-1 and field-13 32-byte SHA-256 records copied as-is. Field 5 and JSON message blobs dropped (those carry prompt text / paths). Independent of the TypeScript encoder.",
+  "latestRoot": {
+    "file": "cursor-cli-latest-root.bin",
+    "childIds": [
+      "a250c3b34d7b6960e91b0ce617a80a46700f1d8471c3f3ae31ff577983875079",
+      "8322f8b4f99a9ea20ad5b7a08594393e130c6d129a136b3611dacd692f56d1e3",
+      "fc7130594503ad1c1b4ebbcf91793cae5f4301c149ad97636f8efb564e1b1684",
+      "109fd059dbbb6e51fcdfb5d70f7e0a4b6573ee06590fc54bf13df8ee88df92cb",
+      "a21178a9c15655f76394b0bbc13732ea72edf6cb544a13794577555a699f2a62",
+      "698f14f5d2f8dc77a2805eaec1aafc8661a65b12d8dd93be336ee9c559fe6817"
+    ]
+  },
+  "summarized": {
+    "latestFile": "cursor-cli-summarized-latest.bin",
+    "priorFile": "cursor-cli-summarized-prior.bin",
+    "otherPriorFile": "cursor-cli-summarized-other-prior.bin",
+    "priorRootId": "2bc859ccbcab5ab19f2f0e2efb2e578f87d82f39123194a5ade1d4f085c20d2a",
+    "otherPriorRootId": "0bc284f91971adcebb78344a6d09b7850d2031a054f3a31a0514a0d6d692f19f",
+    "priorOnlyChildId": "abf346b57e686ae8a0244f022e44f6c75cb8c2662092cd768cfd45f8b621173e",
+    "latestOnlyChildId": "a250c3b34d7b6960e91b0ce617a80a46700f1d8471c3f3ae31ff577983875079"
+  }
+}

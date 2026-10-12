@@ -1,0 +1,330 @@
+/* Copyright 2026 The Agent Desk Authors */
+/* SPDX-License-Identifier: MIT */
+
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource/geist-mono";
+
+
+@theme {
+  /* ── Fonts — Geist Sans + Mono ── */
+  --font-sans: "Geist Variable", "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;
+
+  /* ── Base colours — light theme ── */
+  --color-background: #fafafa;
+  --color-foreground: #111111;
+  --color-muted-foreground: #737373;
+
+  /* ── Surfaces ── */
+  --color-card: #ffffff;
+  --color-border: #e5e5e5;
+  --color-input: #e5e5e5;
+
+  /* ── Interactive ── */
+  --color-accent: #f5f5f5;
+  --color-accent-foreground: #111111;
+
+  /* ── Purple accent ── */
+  --color-accent-violet: #a88eff;
+  --color-ac: var(--color-accent-violet);
+
+  /* ── Semantic tokens consumed by the Button component (shadcn model:
+     the shared component styles against these names; each surface supplies
+     its own values). Mapped onto the desktop palette above. ── */
+  --color-primary: var(--color-ac);
+  --color-primary-foreground: #1a1230; /* primer popup's dark label on purple */
+  --color-secondary: var(--color-card);
+  --color-secondary-foreground: var(--color-muted-foreground);
+  --color-destructive: var(--color-error);
+  --color-destructive-foreground: #ffffff;
+  --color-ring: var(--color-ac);
+
+  /* ── Status ── */
+  --color-success: #4ade80;
+  --color-error: #f87171;
+  --color-warning: #fbbf24;
+
+  /* ── Scrim ── modal/dialog backdrop (token, so no opacity modifier needed) */
+  --color-overlay: rgba(17, 17, 17, 0.5);
+  /* `bg-ov` alias of the scrim colour, for overlay utilities. */
+  --color-ov: var(--color-overlay);
+
+  /* ── Geometry ── */
+  --radius: 0px;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes soft-pulse {
+  0% { transform: scale(0.7); opacity: 0.4; }
+  100% { transform: scale(1.0); opacity: 1.0; }
+}
+
+/* Fixed full-height app shell. Height comes from a percentage chain
+   (#root → body → html → viewport), not a single `height:100vh`, so the shell
+   stays at exactly the viewport height even where Electron's vh unit is
+   unreliable. `overflow:hidden` pins the document itself: all scrolling belongs
+   to the inner regions (e.g. the Projects list's own overflow-y:auto), and the
+   document must never scroll. Without it, Electron's Chromium inflates
+   documentElement.scrollHeight to a clipped inner region's content height, so
+   the whole shell scrolls and reveals blank space below it. */
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Page tokens + the list/table grammar of the Projects and Harness pages, kept
+   as plain CSS (not @theme utilities). The @theme --color-* block above powers
+   the Tailwind utilities, the Button and the reader modal.
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --bg:#FAFAF9; --bg-e:#F3F3F1; --bg-e2:#EAEAE7; --bg-e3:#E2E2DE;
+  --bd:#EBEAE7; --bd-s:#d9d8d4;
+  --fg:#111118; --fg-2:#6e6e80; --fg-3:#96969e;
+  --pr:#530037; --pr-2:#6b0047; --sel:rgba(83,0,55,0.06); --hv-n:rgba(0,0,0,0.04);
+  --ac:#A88EFF; --ac-2:#BFA8FF; --ac-text:#7C5ECF; --ac-fg:#1a1230; --ac-soft:rgba(124,94,207,0.08);
+  --ok:#15803d; --ok-soft:rgba(21,128,61,0.08);
+  --warn:#92400e; --warn-soft:rgba(146,64,14,0.08);
+  --caution:#9a3412; --caution-soft:rgba(154,52,18,0.08);
+  --err:#dc2626; --err-soft:rgba(220,38,38,0.08);
+  --info:#2563eb; --info-soft:rgba(37,99,235,0.08);
+  /* radius ladder: md 6 controls · lg 8 cards/menus · xl 12 elevated */
+  --r-sm:6px; --r-md:6px; --r-lg:8px; --r-xl:12px;
+  /* fallback for first paint — the Harness table measures the real column-header
+     height at runtime and overwrites this; group headers stack sticky below it */
+  --thead-h:41px;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+.rd-aside{width:212px;flex-shrink:0;background:var(--bg-e2);border-right:1px solid var(--bd);
+  display:flex;flex-direction:column;position:relative}
+/* 44px top clears the frameless window's inset traffic lights. */
+.rd-brand{display:flex;align-items:center;gap:9px;padding:44px 14px 12px;border-bottom:1px solid var(--bd)}
+.rd-brand .mark{width:26px;height:26px;border-radius:var(--r-sm);background:var(--bg-e);border:1px solid var(--bd);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.rd-brand b{font-size:13px;display:block;line-height:1.2;color:var(--fg)}
+.rd-brand .st{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--fg-2);margin-top:2px}
+.rd-brand .st i{width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.rd-nav{padding:10px 8px;flex:1}
+.rd-nav-item{display:flex;align-items:center;gap:9px;width:100%;padding:6px 10px;margin-bottom:2px;
+  border:0;background:transparent;font:inherit;font-size:13px;font-weight:500;color:var(--fg-2);
+  border-radius:var(--r-md);cursor:pointer;text-align:left}
+.rd-nav-item svg{flex-shrink:0}
+.rd-nav-item:hover{background:var(--hv-n);color:var(--fg)}
+.rd-nav-item.on{background:var(--sel);color:var(--pr);font-weight:600;box-shadow:inset 2px 0 0 var(--pr)}
+.rd-nav-item .ct{margin-left:auto;font-size:11px;color:var(--fg-3);font-weight:500}
+.rd-sfoot{border-top:1px solid var(--bd);padding:10px 14px;font-size:11px;color:var(--fg-3);
+  display:flex;justify-content:space-between;align-items:center}
+
+/* ── Main pane / page head / tabs / filters ──────────────────────────────── */
+.rd-main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+.rd-pagehead{padding:22px 24px 0}
+.rd-pagehead h1{font-size:17px;font-weight:700;letter-spacing:-0.02em;color:var(--fg)}
+.rd-pagehead p{font-size:12.5px;color:var(--fg-2);margin-top:2px}
+.rd-tabs{display:flex;gap:2px;padding:12px 24px 0;border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.rd-tab{border:0;background:none;font:inherit;font-size:12.5px;font-weight:500;color:var(--fg-2);
+  padding:7px 11px;margin-bottom:-1px;border-bottom:2px solid transparent;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px}
+.rd-tab .ct{font-size:10.5px;background:var(--bg-e3);color:var(--fg-2);padding:1px 6px;border-radius:999px}
+.rd-tab.on{color:var(--fg);font-weight:600;border-bottom-color:var(--pr)}
+.rd-tab.on .ct{background:var(--sel);color:var(--pr)}
+.rd-filters{display:flex;align-items:center;gap:8px;padding:14px 24px 12px;border-bottom:1px solid var(--bd);background:var(--bg)}
+.rd-search{flex:1;display:flex;align-items:center;gap:8px;background:var(--bg-e2);border:1px solid var(--bd);
+  border-radius:var(--r-md);padding:0 10px;height:32px}
+.rd-search input{flex:1;border:0;outline:0;background:none;font:inherit;font-size:13px;color:var(--fg)}
+.rd-search input::placeholder{color:var(--fg-3)}
+.rd-search svg{color:var(--fg-3)}
+.rd-dd{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;background:var(--bg-e2);
+  border:1px solid var(--bd);border-radius:var(--r-md);font-size:12.5px;color:var(--fg-2);cursor:pointer;white-space:nowrap}
+.rd-dd b{color:var(--fg);font-weight:600}
+.rd-dd:hover{border-color:var(--bd-s)}
+.rd-dd svg.cv{color:var(--fg-3)}
+.rd-dd.disabled{opacity:.45;cursor:not-allowed}
+
+/* overflow-x lives here, not on .rd-tblwrap, deliberately: a table whose
+   columns need more width than a narrow window (nowrap cells) must overflow
+   somewhere, but .rd-tblwrap holds the sticky column header — giving IT any
+   non-visible overflow would make it the sticky containing block instead of
+   this element, breaking "header stays pinned as you scroll the page" (the
+   header would only stick within .rd-tblwrap's own auto-height box, which
+   never actually scrolls). Scoping horizontal scroll to this already-scrolling
+   ancestor keeps the sticky math unchanged and keeps row backgrounds/borders
+   from bleeding past their own edge when content is wider than the window. */
+.rd-scroll{flex:1;overflow:auto}
+/* bottom padding keeps the last scrolled content clear of the idle
+   ReportErrorButton pinned at the bottom-right corner (App-level overlay);
+   its transient status pill is an ephemeral overlay and may briefly cover content */
+.rd-scroll-inner{padding:16px 24px 48px}
+.rd-meta-line{font-size:11px;color:var(--fg-3);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.rd-meta-line .refresh{margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 8px;
+  border-radius:var(--r-md);border:0;background:transparent;font:inherit;font-size:11.5px;font-weight:500;
+  color:var(--fg-2);cursor:pointer}
+.rd-meta-line .refresh:hover{background:var(--hv-n);color:var(--fg)}
+.rd-meta-line .refresh:disabled{opacity:.5;cursor:default}
+
+/* ── Table, grouped by scope ───────────────────────────────────────────────── */
+/* width:fit-content + min-width:100% so this box grows to match an overflowing
+   table's true width (root cause of the row-background cutoff: a plain block
+   box always fills its CONTAINING block, never its overflowing CHILD's width,
+   so the table's cells beyond that edge rendered with no wrapper background
+   behind them at all, even though .rd-scroll's overflow-x made them reachable
+   by scroll). min-width:100% keeps it filling full width in the common case
+   where the table doesn't need extra room. */
+.rd-tblwrap{border:1px solid var(--bd);border-radius:var(--r-lg);background:var(--bg-e);
+  width:fit-content;min-width:100%}
+.rd-tblwrap table{width:100%;border-collapse:separate;border-spacing:0}
+.rd-tblwrap thead tr:first-child th:first-child{border-top-left-radius:var(--r-lg)}
+.rd-tblwrap thead tr:first-child th:last-child{border-top-right-radius:var(--r-lg)}
+.rd-tblwrap tbody tr:last-child td:first-child{border-bottom-left-radius:var(--r-lg)}
+.rd-tblwrap tbody tr:last-child td:last-child{border-bottom-right-radius:var(--r-lg)}
+.rd-tblwrap th{position:sticky;top:0;z-index:2;font-size:10.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--fg-2);text-align:left;padding:8px 14px;border-bottom:1px solid var(--bd-s);
+  background:var(--bg-e3);box-shadow:0 2px 4px -2px rgba(17,17,24,.10);white-space:nowrap}
+.rd-tblwrap td{padding:8px 14px;border-bottom:1px solid var(--bg-e3);font-size:12.5px;vertical-align:middle;color:var(--fg)}
+.rd-tblwrap tr:last-child td{border-bottom:0}
+.rd-tblwrap tbody tr[data-d]{cursor:pointer}
+.rd-tblwrap tbody tr[data-d]:hover td{background:var(--hv-n)}
+.rd-tblwrap td .cell-name{display:flex;align-items:center;gap:9px}
+.rd-tblwrap th.num,.rd-tblwrap td.num{text-align:right}
+.rd-tblwrap td.dcell{padding:0;border-bottom:0}
+.rd-tblwrap tr.dim td{opacity:.72}
+.rd-tblwrap th.sortable{cursor:pointer;user-select:none}
+.rd-tblwrap th.sortable:hover{color:var(--fg)}
+.rd-tblwrap th.sortable .sc{display:inline-flex;margin-left:4px;vertical-align:-1px;opacity:.5}
+.rd-tblwrap th.sortable.active .sc{opacity:1;color:var(--pr)}
+/* group header row — middle tone (bg-e2), lighter than the column header (bg-e3) */
+tr.rd-grouprow{cursor:pointer}
+tr.rd-grouprow td{position:sticky;top:var(--thead-h);z-index:1;background:var(--bg-e2);font-size:11px;font-weight:600;
+  color:var(--fg-2);padding:7px 14px;border-bottom:1px solid var(--bd-s);border-top:1px solid var(--bd-s)}
+tr.rd-grouprow td .n{font-weight:500;color:var(--fg-3)}
+tr.rd-grouprow .gchev{display:inline-flex;margin-right:6px;color:var(--fg-3);transition:transform .15s ease;
+  vertical-align:-2px;transform:rotate(90deg)}
+tr.rd-grouprow.collapsed .gchev{transform:rotate(0deg)}
+tr.rd-morerow{cursor:pointer}
+tr.rd-morerow td{color:var(--ac-text);font-size:11.5px;font-weight:600;text-align:center;padding:7px 14px}
+tr.rd-morerow:hover td{background:var(--hv-n)}
+
+/* ── Table pager ──────────────────────────────────────────────────────────── */
+.rd-pager{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;
+  font-size:11.5px;color:var(--fg-3)}
+.rd-pager-ctrls{display:flex;align-items:center;gap:8px}
+.rd-pager-ctrls .pg{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 9px;
+  border-radius:var(--r-md);border:1px solid var(--bd);background:transparent;font:inherit;font-size:11.5px;
+  font-weight:500;color:var(--fg-2);cursor:pointer}
+.rd-pager-ctrls .pg:hover:not(:disabled){background:var(--hv-n);color:var(--fg)}
+.rd-pager-ctrls .pg:disabled{opacity:.4;cursor:default}
+.rd-pager-ctrls .pgnum{color:var(--fg-2);font-weight:500;min-width:88px;text-align:center}
+
+/* type icon (row-level, icon+text only — no background pill) */
+.rd-ticon{display:inline-flex;align-items:center;color:var(--fg-2);flex-shrink:0}
+.rd-typecell{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--fg-2);white-space:nowrap}
+.rd-typecell svg{color:var(--fg-2);flex-shrink:0}
+.rd-ticon.c-purple{color:var(--ac-text)}
+.rd-ticon.c-info{color:var(--info)}
+.rd-ticon.c-caution{color:var(--caution)}
+.rd-ticon.c-warning{color:var(--warn)}
+.rd-ticon.c-success{color:var(--ok)}
+.rd-typecell.c-purple,.rd-typecell.c-purple svg{color:var(--ac-text)}
+.rd-typecell.c-info,.rd-typecell.c-info svg{color:var(--info)}
+.rd-typecell.c-caution,.rd-typecell.c-caution svg{color:var(--caution)}
+.rd-typecell.c-warning,.rd-typecell.c-warning svg{color:var(--warn)}
+.rd-typecell.c-success,.rd-typecell.c-success svg{color:var(--ok)}
+
+.rd-name{font-weight:600;font-size:13px;letter-spacing:-0.01em;white-space:nowrap;color:var(--fg)}
+.rd-desc{font-size:12px;color:var(--fg-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rd-scopetx{font-size:11px;color:var(--fg-3);white-space:nowrap}
+.rd-disab,.rd-active{font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.rd-disab i,.rd-active i{width:6px;height:6px;border-radius:50%;display:inline-block}
+.rd-disab{color:var(--warn)}
+.rd-disab i{background:var(--warn)}
+.rd-active{color:var(--ok)}
+.rd-active i{background:var(--ok)}
+.rd-viewbtn{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--ac-text);
+  background:none;border:0;padding:2px 4px;border-radius:var(--r-sm);cursor:pointer;white-space:nowrap}
+.rd-viewbtn:hover{background:var(--sel)}
+/* row disclosure detail strip */
+.rd-detail-cell{background:var(--bg)}
+.rd-detail{padding:8px 14px 12px 37px}
+.rd-detail .full{font-size:12px;color:var(--fg-2);line-height:1.5;max-width:640px}
+.rd-detail .kv{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:7px;font-size:11.5px;color:var(--fg-3)}
+.rd-detail .kv .mono{font-family:var(--font-mono);color:var(--fg-2)}
+.rd-chev{color:var(--fg-3);display:inline-flex;transition:transform .15s ease;flex-shrink:0}
+.rd-chev.open{transform:rotate(90deg)}
+
+.rd-stub{padding:46px 0;text-align:center;font-size:12.5px;color:var(--fg-3)}
+
+/* ── Reader / contents modal ─────────────────────────────────────────────── */
+.rd-modal-overlay{position:fixed;inset:0;background:rgba(17,17,24,.45);z-index:50;
+  display:flex;align-items:center;justify-content:center;gap:18px;padding:24px}
+.rd-modal-nav{width:38px;height:38px;border-radius:999px;border:0;background:rgba(255,255,255,.92);
+  color:var(--fg-2);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;
+  box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.rd-modal-nav:hover{color:var(--fg);background:#fff}
+.rd-modal-nav:disabled{opacity:.25;cursor:default}
+/* Two fixed sizes, chosen by content scale (never max-height that shrinks to
+   content): compact for the typical case, doc for long files. */
+.rd-modal-dialog{width:560px;height:min(560px,82vh);background:var(--bg-e);border-radius:var(--r-xl);
+  border:1px solid var(--bd);box-shadow:0 24px 60px rgba(0,0,0,.28);display:flex;flex-direction:column;
+  overflow:hidden;transition:width .15s ease,height .15s ease}
+.rd-modal-dialog.doc-size{width:760px;height:min(760px,88vh)}
+.rd-modal-head{flex-shrink:0;display:flex;align-items:flex-start;gap:10px;padding:16px 16px 12px;border-bottom:1px solid var(--bd)}
+.rd-modal-eyebrow{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ac-text);
+  background:var(--sel);padding:2px 7px;border-radius:var(--r-sm);display:inline-block;margin-bottom:6px}
+.rd-modal-head h2{font-size:15px;font-weight:700;letter-spacing:-0.01em;color:var(--fg)}
+.rd-modal-path{font-family:var(--font-mono);font-size:11px;color:var(--fg-3);margin-top:3px;word-break:break-all}
+.rd-modal-close{margin-left:auto;width:26px;height:26px;border-radius:var(--r-sm);border:0;background:transparent;
+  color:var(--fg-3);font-size:15px;cursor:pointer;flex-shrink:0}
+.rd-modal-close:hover{background:var(--hv-n);color:var(--fg)}
+/* content is meant to be read AND copied — re-enable selection over the app-wide none */
+.rd-modal-body{flex:1;min-height:0;overflow-y:auto;font-size:12.5px;line-height:1.65;color:var(--fg-2);user-select:text}
+.rd-modal-body-inner{padding:16px}
+.rd-modal-pre{font-family:var(--font-mono);font-size:12px;line-height:1.6;white-space:pre-wrap;word-break:break-word;color:var(--fg)}
+.rd-modal-msg{padding:32px 0;text-align:center;font-size:13px;color:var(--fg-3)}
+.rd-modal-msg.err{color:var(--err)}
+/* plugin-contents mini list */
+.rd-mlist{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r-lg);overflow:hidden}
+.rd-mlist .mrow{display:flex;align-items:center;gap:9px;padding:8px 12px;border-bottom:1px solid var(--bg-e3);font-size:12.5px;color:var(--fg)}
+.rd-mlist .mrow:last-child{border-bottom:0}
+.rd-mlist .mrow .mt{margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--fg-3)}
+
+/* ── Agent vendor icons (stacked chips) ──────────────────────────────────── */
+.rd-vrow{display:inline-flex;align-items:center}
+.rd-vrow .rd-v{width:18px;height:18px;border-radius:4px;background:var(--bg-e);border:1px solid var(--bd);
+  display:inline-flex;align-items:center;justify-content:center;margin-left:2px;
+  font-family:var(--font-mono);font-size:8.5px;font-weight:700;color:var(--fg-2)}
+.rd-vrow .rd-v:first-child{margin-left:0}
+
+/* ── Icon dropdown menu (Agent filter) — icon+label per row, never a bare
+   string. ──────────────────────────────────────────────────────────────── */
+.rd-dd-wrap{position:relative;display:inline-flex}
+/* Right-anchored by default: the Agent filter is the rightmost control in
+   Harness's filter row, so a left-anchored menu overflowed the window's right
+   edge. Grow leftward from the trigger's right edge instead, and cap height so
+   a long agent list scrolls in place. A dropdown that instead sits near the
+   window's LEFT edge needs the mirror (Dropdown's align="left"): grow
+   rightward from the trigger's left edge, or it clips off the left edge. */
+.rd-menu{position:absolute;top:100%;right:0;left:auto;margin-top:4px;z-index:30;
+  background:var(--bg-e);border:1px solid var(--bd);border-radius:var(--r-md);
+  box-shadow:0 8px 24px rgba(0,0,0,.10);padding:4px;min-width:190px;font-size:13px;
+  max-height:min(320px,60vh);overflow-y:auto}
+.rd-menu.align-left{right:auto;left:0}
+.rd-mi{display:flex;align-items:center;gap:9px;padding:6px 9px;border-radius:var(--r-sm);color:var(--fg);
+  cursor:pointer;border:0;background:none;font:inherit;width:100%;text-align:left}
+.rd-mi:hover{background:var(--bg-e2)}
+.rd-mi.mute{color:var(--fg-2)}
+.rd-mi .ck{margin-left:auto;color:var(--ac-text);display:inline-flex}
+.rd-msep{height:1px;background:var(--bg-e3);margin:4px 6px}

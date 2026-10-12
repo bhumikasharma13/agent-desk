@@ -1,0 +1,6 @@
+{"type":"session.start","timestamp":"2026-04-01T10:00:00.000Z","data":{"copilotVersion":"1.0.0","context":{"cwd":"/home/user/project","gitRoot":"/home/user/project","branch":"feat/sort","headCommit":"abc123","repository":"org/repo"},"startTime":"2026-04-01T10:00:00.000Z"}}
+{"type":"user.message","timestamp":"2026-04-01T10:00:05.000Z","data":{"content":"Write a sort function"}}
+{"type":"tool.execution_complete","data":{"toolName":"mcp__github__web_search","arguments":{"query":"sort algorithms"},"result":"[{\"title\":\"Sorting Algorithms\"}]","exitCode":0}}
+{"type":"assistant.message","data":{"content":"Here is the sort function:","outputTokens":75}}
+{"type":"assistant.turn_end","timestamp":"2026-04-01T10:00:20.000Z"}
+{"type":"session.shutdown","timestamp":"2026-04-01T10:00:30.000Z"}

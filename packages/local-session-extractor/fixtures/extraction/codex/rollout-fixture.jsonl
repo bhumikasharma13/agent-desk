@@ -1,0 +1,9 @@
+{"type":"session_meta","payload":{"cwd":"/home/user/project","model_provider":"openai","source":"cli","git":{"branch":"feat/sort","commit_hash":"abc123def456","repository_url":"https://github.com/org/repo"}}}
+{"type":"event_msg","timestamp":"2026-04-01T10:00:05.000Z","payload":{"type":"user_message","message":"Write a sort function"}}
+{"type":"event_msg","payload":{"type":"token_count","info":{"last_token_usage":{"input_tokens":20,"output_tokens":50,"cached_input_tokens":5}}}}
+{"type":"event_msg","payload":{"type":"exec_command_end","parsed_cmd":[{"type":"read","path":"src/sort.ts"}],"command":["/bin/zsh","-lc","cat src/sort.ts"],"exit_code":0,"aggregated_output":""}}
+{"type":"event_msg","payload":{"type":"patch_apply_end","success":true,"changes":{"src/sort.ts":{}}}}
+{"type":"event_msg","payload":{"type":"mcp_tool_call_end","invocation":{"server":"github","tool":"list_repos"},"result":{"Ok":{"content":"[]"}}}}
+{"type":"event_msg","payload":{"type":"turn_aborted"}}
+{"type":"event_msg","timestamp":"2026-04-01T10:00:45.000Z","payload":{"type":"context_compacted"}}
+{"type":"event_msg","payload":{"type":"task_complete","last_agent_message":"Here is the sort function:"}}

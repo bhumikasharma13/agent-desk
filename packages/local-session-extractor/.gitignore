@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.tgz
+coverage/
+.DS_Store
+.idea/
+.vscode/
+*.log
+# Copied from the repo root by the prepack script, which the root's prepare also runs, so the .tgz carries it.
+/LICENSE

@@ -1,0 +1,77 @@
+{
+  "name": "local-session-extractor",
+  "version": "0.1.0",
+  "description": "Read Claude Code, Copilot, Codex, Cursor, Kiro and Antigravity sessions on macOS into one redacted SQLite store, with a CLI.",
+  "keywords": [
+    "ai-coding",
+    "claude-code",
+    "cursor",
+    "codex",
+    "copilot",
+    "kiro",
+    "antigravity",
+    "sqlite",
+    "redaction",
+    "session",
+    "cli",
+    "macos"
+  ],
+  "license": "MIT",
+  "author": "tetriz-ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tetriz-ai/agent-desk.git",
+    "directory": "packages/local-session-extractor"
+  },
+  "bugs": {
+    "url": "https://github.com/tetriz-ai/agent-desk/issues"
+  },
+  "homepage": "https://github.com/tetriz-ai/agent-desk/tree/main/packages/local-session-extractor#readme",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=24"
+  },
+  "os": [
+    "darwin"
+  ],
+  "files": [
+    "dist",
+    "LICENSE",
+    "NOTICE",
+    "CHANGELOG.md",
+    "third_party"
+  ],
+  "bin": {
+    "local-session-extractor": "./dist/cli.js"
+  },
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./host": {
+      "types": "./dist/host.d.ts",
+      "import": "./dist/host.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "prepack": "tsup && cp ../../LICENSE .",
+    "capture-golden": "node --no-warnings=ExperimentalWarning --import ./test-register.mjs --import ./test-setup.mjs scripts/capture-golden.ts",
+    "stage": "node --no-warnings=ExperimentalWarning --import ./test-register.mjs scripts/stage.ts",
+    "test": "node --no-warnings=ExperimentalWarning --import ./test-register.mjs --import ./test-setup.mjs --test \"src/**/__tests__/*.test.ts\"",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@bufbuild/protobuf": "2.15.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^25.0.0",
+    "eslint": "^10.11.0",
+    "tsup": "^8.4.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.71.0"
+  }
+}
