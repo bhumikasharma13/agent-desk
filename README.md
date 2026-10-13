@@ -11,6 +11,8 @@
 
 Find your past AI coding work without digging through hidden folders. Agent Desk brings sessions from Claude Code, Cursor, GitHub Copilot, Antigravity, Codex and Kiro into one macOS menu bar app, with no account or server. Browse them by tool and project, search a project's sessions, read a past conversation with known secrets masked, and see the skills, rules and hooks your agents load alongside that work.
 
+<a href="https://www.producthunt.com/products/agent-desk-and-session-intelligence?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-agent-desk-session-intelligence" target="_blank" rel="noopener noreferrer"><img alt="Agent Desk + Session Intelligence - Find past AI coding sessions and learn what went wrong | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1277547&amp;theme=light&amp;t=1791878454472"></a>
+
 Pair it with [Session Intelligence](https://github.com/tetriz-ai/session-intelligence) to turn those transcripts into insights about prompting, repeated corrections, outcomes and wasted effort.
 
 Choose the path that fits what you want to do.
