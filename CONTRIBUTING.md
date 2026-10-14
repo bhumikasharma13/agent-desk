@@ -158,9 +158,8 @@ Each package workflow runs `pnpm pack` once, runs the smoke install against that
 creates the GitHub release with the changelog entry as its notes and attaches the `.tgz` and its
 `.sha256`, using the workflow's own token. No package registry account or token is involved. Users
 run the file with `npx "<its URL>"` or add it to a project with `pnpm add <its URL>`, as each
-package README shows. When the repository is public, the workflow also attests the `.tgz`'s
-build provenance, and `gh attestation verify <file>.tgz -R tetriz-ai/agent-desk` checks a
-downloaded file against it; while it is private, that check has nothing to verify.
+package README shows. The workflow also attests the `.tgz`'s build provenance, and
+`gh attestation verify <file>.tgz -R tetriz-ai/agent-desk` checks a downloaded file against it.
 
 With Actions disabled, a maintainer publishes by hand from the tagged commit, with
 `gh` signed in. Only the workflow can attest how the `.tgz` was built, so a release made this
