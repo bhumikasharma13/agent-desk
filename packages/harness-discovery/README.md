@@ -36,14 +36,6 @@ It comes as a command-line tool, `harness-discovery scan`, and as a library. [Ch
 
 ## Quick start
 
-While this repository is private, use an authenticated GitHub CLI account with repository access:
-
-- Download with `gh release download harness-discovery-v0.1.0 --repo tetriz-ai/agent-desk --pattern "harness-discovery-0.1.0.tgz*"`.
-- Verify with `shasum -a 256 -c harness-discovery-0.1.0.tgz.sha256`.
-- Set `HD="file:$PWD/harness-discovery-0.1.0.tgz"` and use that value in the examples below, skipping their public release URL assignment.
-
-Direct release URLs work once the repository is public.
-
 It runs on macOS or Linux with Node 24 or later and git. npx comes with Node. The package has no dependencies.
 
 Each release attaches the package to its GitHub Release as a `.tgz` file, and npx runs it from that file's URL. Set the URL once in your shell, then run the command as `npx "$HD" <command>`. npx fetches the file, asks once before it runs it, and keeps it in its cache. Make a small repo and scan it with an empty home directory so the output shows only the repo:
@@ -65,7 +57,7 @@ repo-local	cursor	rule	.cursor/rules/style.mdc	c68249835e10
 
 Leave out `--home` to include your own user-level config from your home directory. The same steps run as [scan-a-repo](https://github.com/tetriz-ai/agent-desk/tree/main/packages/harness-discovery/examples/scan-a-repo/).
 
-Each version has its own URL, with the version in both the tag and the file name. Newer versions are on the [Releases page](https://github.com/tetriz-ai/agent-desk/releases?q=harness-discovery-v&expanded=true), under tags that start with `harness-discovery-v`. To check a downloaded `.tgz`, run `shasum -a 256 -c <file>.tgz.sha256` beside the `.sha256` the release attaches. These manually built releases include checksums but no hosted build provenance attestation. To build it from source instead, run `pnpm install --frozen-lockfile` in a clone of [agent-desk](https://github.com/tetriz-ai/agent-desk/blob/main/README.md), which builds the package, then `node packages/harness-discovery/dist/cli.mjs scan --repo .`.
+Each version has its own URL, with the version in both the tag and the file name. Newer versions are on the [Releases page](https://github.com/tetriz-ai/agent-desk/releases?q=harness-discovery-v&expanded=true), under tags that start with `harness-discovery-v`. To check a downloaded `.tgz`, run `shasum -a 256 -c <file>.tgz.sha256` beside the `.sha256` the release attaches. These manually built releases include checksums but no hosted build provenance attestation. [CONTRIBUTING.md](https://github.com/tetriz-ai/agent-desk/blob/main/CONTRIBUTING.md) covers building it from source.
 
 ## Choosing an entry point
 
