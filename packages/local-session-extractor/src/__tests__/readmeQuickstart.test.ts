@@ -1,8 +1,8 @@
 // Copyright 2026 The Agent Desk Authors
 // SPDX-License-Identifier: MIT
 /**
- * The README's Install and Use the SDK sections against the code: the install
- * commands, the release URL they use and the capabilities output, and the SDK program,
+ * The README's Quick start and Use it as a library sections against the code: the quick-start
+ * commands, the release URL they use and the capabilities output, and the library program,
  * which is the read-sessions-into-a-store example byte for byte, with that example's output.
  */
 import { describe, it } from "node:test";
@@ -38,30 +38,30 @@ function section(heading: string): string {
   return readme.slice(start, end === -1 ? undefined : end);
 }
 
-describe("the README's Install section", () => {
-  const install = section("Install");
+describe("the README's Quick start section", () => {
+  const quickStart = section("Quick start");
+  const commands = blocks(quickStart, "sh").flatMap((b) => b.trim().split("\n"));
 
-  it("runs exactly these commands, each checked or skipped for a stated reason", () => {
-    const commands = blocks(install, "sh").flatMap((b) => b.trim().split("\n"));
+  it("runs exactly these commands, each checked by scripts/readme-blocks.mjs", () => {
     assert.deepEqual(commands, [
       `LSE=${RELEASE_URL}`,
-      // Checked below against the command's own output. scripts/smoke-install.sh runs the .tgz with npx.
       'npx "$LSE" capabilities',
-      "mkdir lse-try && cd lse-try",
-      // Skipped: the release for this version may not exist yet. scripts/smoke-install.sh adds the .tgz.
-      'pnpm add "$LSE"',
+      'npx "$LSE" scan',
+      'npx "$LSE" list',
+      'npx "$LSE" show codex 0d6c2f4e-1b2a-4c3d-8e9f-0a1b2c3d4e5f > session.json',
+      'npx "$LSE" export --out sessions.jsonl',
     ]);
   });
 
-  it("is what the demo tape types first, the release URL included", () => {
+  it("starts with what the demo tape types, the release URL included", () => {
     const tape = read("assets/demo.tape");
     const typed = [...tape.slice(tape.indexOf("\nShow\n")).matchAll(/^Type(?:@\S+)? `(.*)`/gm)].map((m) => m[1]);
-    assert.deepEqual(typed.slice(0, 2), blocks(install, "sh")[0]!.trim().split("\n"));
+    assert.deepEqual(typed, commands.slice(0, typed.length));
   });
 
   it("names the release of this package.json's version, and the command its bin names", () => {
     assert.deepEqual(Object.keys(pkg.bin), ["local-session-extractor"]);
-    assert.ok(install.includes(`(https://github.com/tetriz-ai/agent-desk/releases?q=${pkg.name}-v&expanded=true)`));
+    assert.ok(quickStart.includes(`(https://github.com/tetriz-ai/agent-desk/releases?q=${pkg.name}-v&expanded=true)`));
   });
 
   it("shows the capabilities command's output", async () => {
@@ -70,28 +70,33 @@ describe("the README's Install section", () => {
     stdout.on("data", (c: Buffer) => (out += c.toString()));
     const code = await main(["capabilities"], { stdout, stderr: new PassThrough(), stdin: new PassThrough() });
     assert.equal(code, 0);
-    assert.deepEqual(blocks(install, "text"), [out]);
+    assert.equal(blocks(quickStart, "text")[0], out);
   });
 });
 
-describe("the README's Use the SDK section", () => {
-  const sdk = section("Use the SDK");
+describe("the README's Use it as a library section", () => {
+  const library = section("Use it as a library");
 
   it("shows the read-sessions-into-a-store example byte for byte, and no other program", () => {
-    assert.deepEqual(blocks(sdk, "ts"), [read("examples/read-sessions-into-a-store/index.mts")]);
+    assert.deepEqual(blocks(library, "ts"), [read("examples/read-sessions-into-a-store/index.mts")]);
   });
 
-  it("runs it with the one command shown", () => {
-    assert.deepEqual(blocks(sdk, "sh"), ["node --no-warnings=ExperimentalWarning scan.mts\n"]);
+  it("adds the package from the release URL, then runs the program with the one command shown", () => {
+    assert.deepEqual(blocks(library, "sh"), [
+      // Skipped by scripts/readme-blocks.mjs: the release for this version may not exist yet.
+      // scripts/smoke-install.sh adds the .tgz.
+      'mkdir lse-try && cd lse-try\npnpm add "$LSE"\n',
+      "node --no-warnings=ExperimentalWarning scan.mts\n",
+    ]);
   });
 
   it("shows the output the example's README pins", () => {
     const exampleOutput = blocks(read("examples/read-sessions-into-a-store/README.md"), "text").at(-1);
-    assert.deepEqual(blocks(sdk, "text"), [exampleOutput]);
+    assert.deepEqual(blocks(library, "text"), [exampleOutput]);
   });
 
   it("links the examples index", () => {
-    assert.ok(sdk.includes("](https://github.com/tetriz-ai/agent-desk/blob/main/packages/local-session-extractor/examples/README.md)"));
+    assert.ok(library.includes("](https://github.com/tetriz-ai/agent-desk/blob/main/packages/local-session-extractor/examples/README.md)"));
   });
 });
 

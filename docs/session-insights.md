@@ -18,7 +18,7 @@ Agent Desk collects and displays your sessions. Analysis runs separately in Sess
    node packages/local-session-extractor/dist/cli.js show codex -- YOUR_SESSION_ID > session.json
    ```
 
-   For Claude Code use `show claude-code -- YOUR_SESSION_ID`. Other source names are `cursor`, `copilot`, `kiro` and `antigravity`. The current CLI writes Session Intelligence's `Conversation` JSON by default, ready for analysis. `--raw` writes a store row and needs conversion. See the [extractor CLI guide](../packages/local-session-extractor/README.md#use-the-cli).
+   For Claude Code use `show claude-code -- YOUR_SESSION_ID`. Other source names are `cursor`, `copilot`, `kiro` and `antigravity`. The current CLI writes Session Intelligence's `Conversation` JSON by default, ready for analysis. `--raw` writes a store row and needs conversion. See the [extractor quick start](../packages/local-session-extractor/README.md#quick-start).
 
 3. **Analyze and review.** Follow [Session Intelligence's setup](https://github.com/tetriz-ai/session-intelligence#quick-start) to start its reference LLM service with your own key, then run this from a clone of that repo:
 

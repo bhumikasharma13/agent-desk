@@ -37,8 +37,6 @@ writeFileSync(join(bin, "ps"), "#!/bin/sh\nexit 0\n", { mode: 0o755 });
 
 const skips = {
   'pnpm add "$LSE"': "adds a release that may not exist yet; scripts/smoke-install.sh adds the packed .tgz",
-  "go run ./cmd/analyze-real --url http://localhost:8000 /absolute/path/to/session.json > analysis.json":
-    "runs in a clone of Session Intelligence against its LLM service; src/__tests__/sessionIntelligenceContract.test.ts holds the export to its proto",
 };
 let failed = 0;
 const report = (ok, what) => {

@@ -1,6 +1,6 @@
 # Reference
 
-This page lists the exact rules: the scan, the store, the export, the redaction, the host settings and the command line. The [README](../README.md) shows how to install and use the package. The full type signatures ship in the package's `.d.ts` files.
+This page lists the exact rules: the scan, the store, the export, the redaction, the host settings and the command line. The [README](../README.md) shows how to install and use the package. The full type signatures ship in the package's `.d.ts` files. The last sections cover versioning, checking a release and the tests.
 
 ## Scanning: `readAll` and `readSource`
 
@@ -234,3 +234,17 @@ So a `Conversation` cannot link a sub-agent, plugin or hook session to its paren
 - **Confirmation.** `reset` asks first. Without `--yes` it refuses to run when input is not a terminal.
 - **Session ids.** An id that starts with `-`, as a Claude Code id does, goes after `--`, with options before it: `local-session-extractor show --db <path> claude-code -- <id>`. A Claude Code id has the form `<encoded project folder>::<session uuid>`.
 - **Exit codes.** 0 on success, 2 when a scan finished but at least one source failed as a whole, 1 on a usage error or any other failure. A session that could not be read is reported and still exits 0.
+
+## Versioning and compatibility
+
+The package is at v0.1.0 and follows semantic versioning. A change to an exported signature, a store column or an export field is breaking. Before 1.0, the store schema, the export fields and the function signatures may change in a minor release.
+
+## Checking a release
+
+Each version has its own URL, with the version in both the tag and the file name. To check a downloaded `.tgz`, run `shasum -a 256 -c <file>.tgz.sha256` beside the `.sha256` the release attaches. These manually built releases include checksums but no hosted build provenance attestation.
+
+## Tests
+
+`pnpm test` runs the whole suite offline. A test-wide guard gives every test an empty temp home, blocks `ps` and HTTPS, and ignores your git settings.
+
+`scripts/smoke-install.sh` installs the packed package and compares a scan of the fixture homes with `fixtures/golden.jsonl` and `fixtures/golden-conversation.jsonl`. Run every example locally through `scripts/run-examples.sh`; GitHub Actions is disabled.

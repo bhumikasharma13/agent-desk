@@ -15,7 +15,7 @@ A test traces every file read, write, connection and command the app's Node code
   - Codex's `auth.json` and Kiro's login database: the login email and plan.
   - Cursor's `~/.cursor/cli-config.json`: the login email.
 - `sessions.db` keeps those details unmasked, with the device and account ids the tools record in their own logs and caches. It masks secrets, email addresses and your user name in the session text.
-- `sessions.db` also keeps branch names and Claude Code session ids as written, your user name included. local-session-extractor's [Redaction](../packages/local-session-extractor/README.md#redaction) list names the tests that pin both.
+- `sessions.db` also keeps branch names and Claude Code session ids as written, your user name included. local-session-extractor's [Redaction](../packages/local-session-extractor/docs/limits.md#redaction) list names the tests that pin both.
 
 **Reads less than it could:**
 
@@ -27,7 +27,7 @@ A test traces every file read, write, connection and command the app's Node code
 
 **Shows more than it should:**
 
-- A conversation on the Projects page shows what masking missed. Masking misses a secret written as a plain word in a shape no pattern knows, a token used as the user name in a URL on a dotless host, and another person's name inside a path. local-session-extractor's [Redaction](../packages/local-session-extractor/README.md#redaction) list names each case and the test that pins it.
+- A conversation on the Projects page shows what masking missed. Masking misses a secret written as a plain word in a shape no pattern knows, a token used as the user name in a URL on a dotless host, and another person's name inside a path. local-session-extractor's [Redaction](../packages/local-session-extractor/docs/limits.md#redaction) list names each case and the test that pins it.
 
 **Shows less than is there:**
 

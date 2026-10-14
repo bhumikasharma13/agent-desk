@@ -1,7 +1,7 @@
 # Copyright 2026 The Agent Desk Authors
 # SPDX-License-Identifier: MIT
 # vhs tape for the demo GIF. Render with `vhs assets/demo.tape` from the package folder.
-# It types the README's Install and Use the CLI commands verbatim. The hidden setup answers
+# It types the README's first Quick start commands verbatim. The hidden setup answers
 # `npx` for the release URL with the packed package, offline, since a demo cannot wait for a
 # release, and points HOME at a copy of the repo's demo home, so the scan reads only that
 # folder, and nothing the tape runs reaches the network or a real home.

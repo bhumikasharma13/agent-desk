@@ -83,7 +83,7 @@ diff, then update that source's `EXTRACTOR_CODE_VERSION` and `EXTRACTOR_GOLDEN_S
 line in its own `CHANGELOG.md`.
 
 The package's `assets/demo.gif` is rendered from `assets/demo.tape`, never recorded by hand.
-Re-render it when a change alters what the package README's Install or CLI commands print. With
+Re-render it when a change alters what the package README's Quick start commands print. With
 `vhs`, `ttyd` and `ffmpeg` installed (`brew install vhs`), run `vhs assets/demo.tape` from the
 package folder and commit the GIF. Without them, run the `local-session-extractor demo GIF`
 workflow and commit its `demo-gif` artifact.
